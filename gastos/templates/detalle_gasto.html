@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block cuerpo %}
+{% with menudetalle="1" pk=gasto.pk %}
+
+{% endwith %}
+<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-account-location text-primary icon-md mr-0 mr-sm-4">
+					</i>Información del Gasto</h3>
+
+					<hr>
+                        <p>Num Factura:  &nbsp;	    <label>{{ gasto.num_factura | default_if_none:"" }}</label></p>
+					    <p>Nombre:		&nbsp;   	<label>{{ gasto.nombre | default_if_none:"" }}</label></p>
+                        <p>Fecha :  &nbsp;          <label>{{ gasto.fecha | default_if_none:"" }}</label></p>
+                        <p>Fecha Caducidad:   &nbsp;<label>{{ gasto.fecha_caducidad | default_if_none:"" }}</label></p>
+                        <p>Descripción:   &nbsp;    <label>{{ gasto.descripcion | default_if_none:"" }}</label></p>
+				</div>
+			</div>
+		</div>
+
+				<!-- card 1-->
+		<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-more text-primary icon-md mr-0 mr-sm-4">
+					</i>Información adicional</h3>
+					<hr>
+
+
+                        <p>Proveedor:         &nbsp;<label>{{ gasto.proveedor | default_if_none:"" }}</label></p>
+                        <p>IVA:        &nbsp;       <label>{{ gasto.iva_display | default_if_none:"" }}</label></p>
+                        <p>Forma de Pago:     &nbsp;<label>{{ gasto.forma_pago_display | default_if_none:"" }}</label></p>
+                        <p>Unidades:          &nbsp;<label>{{ gasto.unidades | default_if_none:"" }}</label></p>
+
+                        <p><label class="form-check-label">Almacenable: &nbsp;</label>
+                            {% if gasto.almacenable %}
+                                <input class="" style="pointer-events: none;" type="checkbox" checked>
+                                {% else %}
+                                <input style="pointer-events:none;" type="checkbox" uncheked>
+                            {% endif %}
+                        </p>
+				</div>
+			  </div>
+        </div>
+</div>
+
+		<div class="modal-footer">
+			<a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'gastos:listado_gastos' %}">volver</a>
+		</div>
+
+{% endblock cuerpo %}

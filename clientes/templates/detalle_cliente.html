@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block cuerpo %}
+{% with menudetalle="1" pk=cliente.pk %}
+  {% include "menucliente.html" %}
+{% endwith %}
+<div class="row">
+			<div class="col-sm-4 col-md-4 col-lg-4 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h3 class="card-title">Información de Identificación</h3>
+
+                    <p class="card-description">  </p>
+
+					<p>
+						{% if not recurso.foto %}
+							<img src="{%  static 'assets/images/faces/default.png' %}" style="width:230px; height;230px;"></a>
+						{% else %}
+							<img src="{{ cliente.foto.url }}" style="width:230px; height;230px;"></a>
+						{% endif %}
+					</p>
+					<hr>
+					<p>Nombre:		&nbsp;	<label>{{ cliente.nombre | default_if_none:"" }}</label></p>
+					<p>Apellidos:   &nbsp;	<label>{{ cliente.apellidos | default_if_none:"" }}</label></p>
+					<p>Tipo Documento: &nbsp;<label>{{ cliente.tipo_documento_display | default_if_none:"" }}</label></p>
+					<p>Nº Documento:   &nbsp;<label>{{ cliente.num_documento | default_if_none:"" }}</label></p>
+					<p>Fecha Nacimiento:   &nbsp;<label>{{ cliente.fecha_nacimiento | default_if_none:"" }}</label></p>
+					<p>Profesión:   &nbsp;<label>{{ cliente.profesion | default_if_none:"" }}</label></p>
+				</div>
+			</div>
+		</div>
+
+				<!-- card 1-->
+		<div class="col-sm-4 col-md-4 col-lg-4 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-account-location text-primary icon-md mr-0 mr-sm-4">
+					</i>Información de Contacto</h3>
+					<hr>
+
+                    <p class="card-description">  </p>
+
+                    <p>Email:&nbsp;		<label>{{ cliente.email | default_if_none:""}}</label></p>
+					<p>Movil:&nbsp;		<label>{{ cliente.movil | default_if_none:""}}</label></p>
+					<p>Telefono:&nbsp;	<label>{{ cliente.telefono | default_if_none:""}}</label></p>
+					<p>Sexo:		<label>{{ cliente.sexo_display }}</label></p>
+					<p>Estado Civil:<label>{{ cliente.estado_civil_display | default_if_none:""}}</label></p>
+					<p>Hijos:  		<label>{{ cliente.hijos }}</label></p>
+					<p>Obs.Medicas: <label>{{ cliente.obs_medicas | default_if_none:""}}</label></p>
+
+
+				</div>
+			  </div>
+            </div>
+
+			<div class="col-sm-4 col-md-4 col-lg-4 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+
+
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-earth  icon-md text-primary mr-0 mr-sm-4">
+					</i>Dirección</h3>
+					<hr>
+					<p>Calle:		    <label>{{ cliente.dir_calle | default_if_none:""}}</label></p>
+					<p>Número:		    <label>{{ cliente.dir_numero | default_if_none:""}}</label></p>
+					<p>Piso/Puerta:		<label>{{ cliente.dir_piso | default_if_none:""}}</label></p>
+					<p>C.P.:   			<label>{{ cliente.codigo_postal | default_if_none:""}}</label></p>
+					<p>Provincia:		<label>{{ cliente.provincias | default_if_none:""}}</label></p>
+					<p>Población:		<label>{{ cliente.poblacion | default_if_none:""}}</label></p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+
+
+				</div>
+			  </div>
+        	</div>
+		</div>
+</div>
+
+		<div class="modal-footer">
+			<a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'clientes:listado_clientes' %}">volver</a>
+		</div>
+
+{% endblock cuerpo %}

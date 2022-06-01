@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block cuerpo %}
+
+      <!-- partial -->
+
+<style>
+.dataTables_wrapper .dataTable .btn{
+     padding: 0.4rem 0.9rem!important;
+    vertical-align: top;
+}
+</style>
+
+
+<div class="row">
+  <div class="col-md-12">
+            <div class="card" >
+              <div class="card-body">
+                  <h3 class="card-title">Listado de Profesionales</h3>
+                  <p class="card-description">  </p>
+                <div class="row">
+                  <div class="col-12 table-responsive">
+                    <table id="tabla" class="table">
+                      <thead>
+                        <tr>
+
+                             <th>Nombre Completo</th>
+                             <th>DNI </th>
+                             <th>Tipo Contrato</th>
+                             <th>Fecha Vencimiento</th>
+                             <th> <a role="button" class="btn btn-outline-warning btn-sm" href="{% url 'profesionales:nuevo_profesional' %}">Nuevo Profesional</a></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+
+                        {% for 	prof in profesionales %}
+
+                            <tr>
+                                <td>{{ prof.nombre | default_if_none:"" | truncatechars:25 }}&nbsp;{{ prof.apellidos | default_if_none:"" | truncatechars:25 }}</td>
+                                <td>{{ prof.num_documento | default_if_none:"" | truncatechars:25 }}</td>
+                                <td>{{ prof.tipo_contrato_display | default_if_none:"" }}</td>
+                                <td>{{ prof.fecha_vencimiento | default_if_none:"" }} </td>
+                                <td>
+                                    <a role="button" class="btn btn-outline-primary btn-sm" href="{% url 'profesionales:detalle_profesional' prof.pk %}">ver</a>
+                                    <a role="button" class="btn btn-outline-success btn-sm" href="{% url 'profesionales:modificar_profesional' prof.pk %}">modificar</a>
+                                    <a onclick="return abrir_modal('{% url 'profesionales:profesional_eliminar' prof.pk %}')">
+                                        <span class="btn btn-outline-danger mdi mdi-delete"></span></a>
+                                </td>
+                            </tr>
+			            {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+  </div>
+</div>
+<div id="popup" class="modal fade" role="dialog">
+
+
+</div>
+{% endblock cuerpo %}
+
+{% block js %}
+
+<script>
+function abrir_modal(url)
+{
+	$('#popup').load(url, function()
+	{
+		$(this).modal('show');
+	});
+	return false;
+}
+
+function cerrar_modal()
+{
+	$('#popup').modal('hide');
+	return false;
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+        	url: "/static/assets/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+    <!-- Custom js for this page
+    <script src="{% static '/assets/js/shared/data-table.js' %}"></script>-->
+          <script src="{% static 'assets/js/shared/modal-demo.js' %}"></script>
+   <!--<script src="{% static 'assets/js/shared/jquery.dataTables.min.js' %}"></script>-->
+   <!-- End custom js for this page-->
+
+{% endblock js %}

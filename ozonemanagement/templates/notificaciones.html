@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<div class="navbar-menu-wrapper d-flex align-items-center">
+  <ul class="navbar-nav ml-auto">
+
+    <li class="nav-item dropdown d-none d-xl-inline-block">
+      <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">Hola,
+        {{ user.username }}!
+        {% if user.profesional.foto %}
+          <img class="img-xs rounded-circle ml-3" src="{{ user.profesional.foto.url }}" alt="Profile image">
+        {% else %}
+
+		  <img class="img-xs rounded-circle ml-3" src="{%  static 'assets/images/faces/pic-1.png' %}" />
+
+		{% endif %}
+      </a>
+      <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+        <a class="dropdown-item p-0">
+          <div class="d-flex border-bottom">
+
+            <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
+
+              <a href="{% url 'albaranes:listado_albaranes' %}" class="nav-link">
+                <i class="link-icon mdi mdi-note-multiple-outline mr-0 text-gray" alt="Albaranes"></i>
+              </a>
+            </div>
+
+            <div class="py-3 px-4 d-flex align-items-center justify-content-center">
+
+                {% if user.is_active and user.is_staff %}
+                    <a href="/admin/" class="nav-link">
+                        <i class="link-icon mdi mdi-settings-outline mr-0 text-gray" alt="Administración"></i>
+
+                    </a>
+                {% endif %}
+            </div>
+
+          </div>
+        </a>
+
+      </div>
+    </li>
+  </ul>
+  <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+    <span class="mdi mdi-menu"></span>
+  </button>
+</div>

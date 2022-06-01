@@ -1,0 +1,27 @@
+{% load staticfiles %}
+{% block cuerpo %}
+
+
+<div class="container">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            <h5> Eliminando Factura "{{ object }}" </h5>
+
+            <form method="post" action="{% url 'clientes:documento_eliminar' object.pk %}">{% csrf_token %}
+                <p>Seguro que quieres eliminar esta factura?</p>
+                <input type="submit" class="btn btn-danger" value="Eliminar">
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock cuerpo %}

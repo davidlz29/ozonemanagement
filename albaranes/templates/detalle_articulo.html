@@ -1,0 +1,42 @@
+
+{% load staticfiles %}
+{% block cuerpo %}
+
+
+<div class="container">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+
+          <h5 class="card-title"><i class="mdi mdi-receipt text-primary icon-md mr-4 mr-sm-4">
+					</i>Detalle del Articulo
+		  </h5>
+					<hr>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+		<div class="modal-body">
+
+					<hr>
+
+					<p>Nombre:		&nbsp;   <label>{{ articulo.nombre | default_if_none:"" | truncatechars:50}}</label></p>
+					<p>Proveedor:	&nbsp;	<label>{{ articulo.proveedor | default_if_none:"" | truncatechars:50}}</label></p>
+					<p>Cat. Articulo:   &nbsp;<label>{{ articulo.categoria | default_if_none:"" | truncatechars:50}}</label></p>
+					<p>Precio:   		&nbsp;<label>{{ articulo.precio | default_if_none:"" | truncatechars:50}}</label></p>
+
+
+
+	  </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">cerrar</button>
+		</div>
+
+	</div>
+  </div>
+</div>
+{% endblock cuerpo %}
+

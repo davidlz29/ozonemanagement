@@ -1,0 +1,17 @@
+*.pyc
+*~
+__pycache__
+myvenv
+
+db.sqlite3
+
+.DS_Store
+local_settings.py
+.idea/
+*.xlsx
+
+.idea/*
+.idea/workspace.xml
+*.gif
+*.doc
+*.pdf

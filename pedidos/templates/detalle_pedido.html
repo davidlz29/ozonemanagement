@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block cuerpo %}
+
+<div class="row">
+
+			<div class="col-sm-3 col-md-3 col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h2 class="card-title">
+						<i class="mdi mdi-tooltip-text text-primary mr-0 mr-sm-4 icon-sm">
+						</i>Información del Pedido
+					</h2>
+
+					<hr><br>
+					<p>Número Pedido   &nbsp;		<label>{{ pedido.numero_pedido | default_if_none:"" | truncatechars:40 }}</label></p>
+					<p>Fecha:   &nbsp;				<label>{{ pedido.fecha | default_if_none:""  }}</label></p>
+					<p>Lote:		&nbsp;			<label>{{ pedido.lote | default_if_none:"" | truncatechars:40 }}</label></p>
+					<p>Descripción:		&nbsp;		<label>{{ pedido.descripcion | default_if_none:""  }}</label></p>
+					<p>Observaciones:   &nbsp;		<label>{{ pedido.observaciones | default_if_none:""  }}</label></p>
+				  </div>
+			   </div>
+			</div>
+
+
+
+
+
+
+
+
+			<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h2 class="card-title"><i class="mdi mdi-archive text-primary mr-0 mr-sm-4 icon-sm">
+					</i>Artículos del pedido </h2>
+
+                   <hr>
+
+					 <table id="tabla" class="table">
+                      <thead>
+                        <tr>
+
+							 <th>Artículos  </th>
+							 <th>Cantidad</th>
+							 <th>Proveedor del Artículo</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+
+                        {% for 	var in articulo %}
+
+                            <tr>
+
+                                <td>{{ var.cod_articulo.nombre | default_if_none:"" | truncatechars:100 }}</td>
+                                <td>{{ var.cantidad | default_if_none:"" }}</td>
+								<td>{{ var.cod_articulo.proveedor | default_if_none:"" }}</td>
+                            </tr>
+			            {% endfor %}
+                      </tbody>
+                    </table>
+				 </div>
+			  </div>
+			</div>
+</div>
+<div>
+		<div class="col-12 text-right">
+			 <a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'pedidos:listado_pedidos' %}">volver</a>
+		</div>
+
+</div>
+
+
+{% endblock cuerpo %}
+
+

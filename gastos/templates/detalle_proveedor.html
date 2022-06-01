@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block cuerpo %}
+{% with menudetalle="1" pk=proveedor.pk %}
+
+{% endwith %}
+<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-account-location text-primary icon-md mr-0 mr-sm-4">
+					</i>Información del Proveedor</h3>
+
+					<hr>
+					<p>Razón Social:  &nbsp;	<label>{{ proveedor.razon_social | default_if_none:"" | truncatechars:25}}</label></p>
+					<p>Tipo Documento:   &nbsp; <label>{{ proveedor.tipo_documento_display | default_if_none:"" }}</label></p>
+					<p>Número Documento:  &nbsp;<label>{{ proveedor.num_documento | default_if_none:"" }}</label></p>
+					<p>Fecha Alta:        &nbsp;<label>{{ proveedor.fecha_alta | default_if_none:"" }}</label></p>
+
+				</div>
+			</div>
+		</div>
+
+				<!-- card 1-->
+		<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-more text-primary icon-md mr-0 mr-sm-4">
+					</i>Información adicional</h3>
+					<hr>
+
+                    <p class="card-description">  </p>
+
+                    <p>Calle:   	      &nbsp;<label>{{ proveedor.dir_calle | default_if_none:"" | truncatechars:25}}</label></p>
+					<p>Número:   	      &nbsp;<label>{{ proveedor.dir_numero | default_if_none:"" }}</label></p>
+					<p>Piso/Puerta:   	      &nbsp;<label>{{ proveedor.dir_piso_puerta | default_if_none:"" }}</label></p>
+					<p>CP:   		&nbsp;	    <label>{{ proveedor.cod_postal | default_if_none:"" }}</label></p>
+					<p>Población:         &nbsp;<label>{{ proveedor.poblacion | default_if_none:"" }}</label></p>
+					<p>Provincia:         &nbsp;<label>{{ proveedor.provincias | default_if_none:"" }}</label></p>
+				</div>
+			  </div>
+        </div>
+</div>
+
+		<div class="modal-footer">
+			<a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'gastos:listado_proveedores' %}">volver</a>
+		</div>
+
+{% endblock cuerpo %}

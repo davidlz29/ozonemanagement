@@ -1,0 +1,12 @@
+<nav class="navbar  bg-light text-center nav-bottom ">
+
+	<div class="container d-flex justify-content-center">
+	<ul class="nav nav-tabs tab-solid tab-solid" role="tablist">
+
+		<li class="nav-item"><a class="btn btn-outline-primary {% if menudetalle %}btn-outline-primary active{% endif %}" href="{% url 'profesionales:detalle_profesional' pk %}">Detalles</a></li>
+		<li class="nav-item"><a class="btn btn-outline-primary {% if menudocumento %}btn-outline-primary active{% endif %}" href="{% url 'profesionales:documentos_profesionales' pk %}">Documentos </a></li>
+		<li class="nav-item"><a class="btn btn-outline-primary {% if menubajas %}btn-outline-primary active{% endif %}" href="{% url 'profesionales:bajas_profesionales' pk %}">Bajas </a></li>
+    </ul>
+
+    </div>
+</nav>

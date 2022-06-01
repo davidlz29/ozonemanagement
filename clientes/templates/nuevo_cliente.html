@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block cuerpo %}
+
+<div class="container">
+<div class="card">
+    <div class="card-body">
+		<form class="forms-group" role="form" action="{% url 'clientes:nuevo_cliente' %}" method="post" enctype="multipart/form-data" >
+			<h3 class="card-title">Nuevo Cliente</h3>
+            <p class="card-description">  </p>
+
+            <div class="body">
+				{% csrf_token %}
+				 <div class="form-group">
+                                <label> <p>Nombre</p> {{ form.nombre }}</label>
+                                <label> <p>Apellidos</p> {{ form.apellidos }}</label>
+                                <label> <p>Fecha Nacimiento</p> {{ form.fecha_nacimiento }}</label>
+                                <label> <p>Fecha Alta</p> {{ form.fecha_alta }}</label>
+                                <label> <p>CP </p> {{ form.codigo_postal }}</label>
+                                <label> <p>Dirección </p> {{ form.dir_calle }}</label>
+                                <label> <p>Número </p> {{ form.dir_numero }}</label>
+                                <label> <p>Piso/Planta</p> {{ form.dir_piso }}</label>
+                                <label> <p>Email</p> {{ form.email }}</label>
+                                <label> <p>Teléfono</p> {{ form.telefono }}</label>
+                                <label> <p>Móvil</p> {{ form.movil }}</label>
+                                <label> <p>Web</p> {{ form.web }}</label>
+                                <label> <p>Profesión</p> {{ form.profesion }}</label>
+                                <label> <p>Hijos</p> {{ form.hijos }}</label>
+                                <label> <p>Obs Medicas</p> {{ form.obs_medicas }}</label>
+                                <label> <p>Fecha Proxima cita</p> {{ form.fecha_prox_cita }}</label>
+                                <label> <p>Instagram</p> {{ form.instagram }}</label>
+                                <label> <p>Facebook</p> {{ form.facebook }}</label>
+                                <label> <p>Twitter</p> {{ form.twitter }}</label>
+                                <label> <p>Otras</p> {{ form.otras }}</label>
+                                        <p>Tipo Documento {{form.tipo_documento}}</p>
+                                        <p>Nº Documento {{form.num_documento}}</p>
+                                        <p>Población {{form.poblacion}}</p>
+                                        <p>Provincia {{form.provincias}}</p>
+                                        <p>Recomendaciones {{form.recomendaciones}}</p>
+                                        <p>Estado Civil {{form.estado_civil}}</p>
+                                        <p>Sexo {{form.sexo}}</p>
+                                        <p>Profesional Asignado {{form.prof_asignado}}</p>
+
+                                 <p>SMS</p> {{ form.sms }}
+                                 <p> EMAIL</p> {{ form.e_mail }}
+                                 <p> POSTAL</p> {{ form.postal }}
+                            </div>
+			</div>
+
+			<div>
+				<div class="col-lg-12 text-right">
+					<input type="submit" class="btn btn-primary" name="submit" value="Guardar">
+					<a role="button" class="btn btn-outline-danger" href="{{request.META.HTTP_REFERER}}">Cancelar</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+
+
+{% endblock cuerpo %}

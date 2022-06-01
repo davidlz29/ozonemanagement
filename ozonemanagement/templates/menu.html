@@ -1,0 +1,45 @@
+{% load staticfiles %}
+    <div class="nav-bottom">
+        <div class="container">
+          <ul class="nav page-navigation">
+
+                <li class="nav-item">
+                  <a href="/index.html" class="nav-link">
+                    <i class="link-icon mdi mdi-airplay"></i>
+                    <span class="menu-title">Estadisticas</span>
+                  </a>
+                </li>
+
+              <li class="nav-item">
+                   <a href="{% url 'clientes:listado_clientes' %}" class="nav-link">
+                    <i class="link-icon mdi mdi-account-card-details"></i>
+                    <span class="menu-title ">Clientes </span>
+                  </a>
+              </li>
+
+
+               <li class="nav-item">
+                   <a href="{% url 'articulos:listado_articulos' %}" class="nav-link">
+                    <i class="link-icon mdi mdi-cart"></i>
+                    <span class="menu-title ">Artículos </span>
+                  </a>
+              </li>
+
+               <li class="nav-item">
+                   <a href="{% url 'pedidos:listado_pedidos' %}" class="nav-link">
+                    <i class="link-icon mdi mdi-cart"></i>
+                    <span class="menu-title ">Pedidos </span>
+                  </a>
+              </li>
+
+              <li class="nav-item">
+                   <a href="{% url 'gastos:listado_gastos' %}" class="nav-link">
+                    <i class="link-icon mdi mdi-currency-usd"></i>
+                    <span class="menu-title ">Gastos </span>
+                  </a>
+              </li>
+              
+
+          </ul>
+        </div>
+    </div>

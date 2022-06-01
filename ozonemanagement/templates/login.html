@@ -1,0 +1,63 @@
+<div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+          <div class="row w-100">
+            <div class="col-lg-4 mx-auto">
+              <div class="auto-form-wrapper">
+                <form id="login-form" method="post"
+                  action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="label">Username</label>
+                    <div class="input-group">
+                      <input type="text" id="id_username" name="username" class="form-control" placeholder="Username">
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="label">Password</label>
+                    <div class="input-group">
+                      <input type="password" id="id_password" name="password" class="form-control" placeholder="*********">
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary submit-btn btn-block">Login</button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                  </div>
+                  <div class="form-group d-flex justify-content-between">
+                    <div class="form-check form-check-flat mt-0">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" checked> Keep me signed in </label>
+                    </div>
+                    <a href="#" class="text-small forgot-password text-black">Forgot Password</a>
+                  </div>
+                  <div>
+                     <p class="footer-text text-center text-dark ">Copyright © 2022 - Kipa Import SL</p>
+                     <ul class="auth-footer">
+                        <li>
+                          <a href="https://policies.google.com/terms?hl=en-US" class="text-success font-weight-bold ">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="https://support.google.com/?hl=es " class="text-success font-weight-bold ">Help</a>
+                        </li>
+                        <li>
+                          <a href="https://policies.google.com/terms?hl=en-US " class="text-success font-weight-bold">Terms</a>
+                        </li>
+                     </ul>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

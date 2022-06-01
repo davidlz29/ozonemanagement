@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block cuerpo %}
+{% with menudetalle="1" pk=profesional.pk %}
+  {% include "menuprofesionales.html" %}
+{% endwith %}
+<div class="row">
+			<div class="col-sm-4 col-md-4 col-lg-4 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h3 class="card-title">Información de Identificación</h3>
+
+                    <p class="card-description">  </p>
+
+					<p>
+						{% if not profesional.foto %}
+							<img src="{%  static 'assets/images/faces/default.png' %}" style="width:230px; height;230px;"></a>
+						{% else %}
+							<img src="{{ profesional.foto.url }}" style="width:230px; height;230px;"></a>
+						{% endif %}
+					</p>
+					<hr>
+					<p>Nombre Completo:		&nbsp;	    <label>{{ profesional.nombre}} {{profesional.apellidos | default_if_none:"" }}</label></p>
+					<p>Tipo Documento: &nbsp;    <label>{{ profesional.tipo_documento_display | default_if_none:"" }}</label></p>
+					<p>Nº Documento:   &nbsp;    <label>{{ profesional.num_documento | default_if_none:"" }}</label></p>
+					<p>Perfil:   &nbsp;    <label>{{ profesional.perfil_display | default_if_none:"" }}</label></p>
+					<p>Tipo Contrato:   &nbsp;    <label>{{ profesional.tipo_contrato_display | default_if_none:"" }}</label></p>
+					<p>Fecha Alta:   &nbsp;    <label>{{ profesional.fecha_alta | default_if_none:"" }}</label></p>
+					<p>Fecha Vencimiento:   &nbsp;    <label>{{ profesional.fecha_vencimiento | default_if_none:"" }}</label></p>
+
+				  </div>
+              </div>
+		    </div>
+
+				<!-- card 1-->
+		<div class="col-sm-4 col-md-4 col-lg-4 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-account-location text-primary icon-md mr-0 mr-sm-4">
+					</i>Información de Contacto</h3>
+					<hr>
+
+                    <p class="card-description">  </p>
+
+                    <p>Fecha Nacimiento:   &nbsp;<label>{{ profesional.fecha_nacimiento | default_if_none:"" }}</label></p>
+                    <p>Email:&nbsp;		        <label>{{ profesional.email | default_if_none:""}}</label></p>
+					<p>Movil:&nbsp;	        	<label>{{ profesional.movil | default_if_none:""}}</label></p>
+					<p>Telefono:&nbsp;	        <label>{{ profesional.telefono | default_if_none:""}}</label></p>
+					<p>Sexo:		        <label>{{ profesional.sexo_display }}</label></p>
+					<p>Estado Civil:        <label>{{ profesional.estado_civil_display | default_if_none:""}}</label></p>
+					<p>Hijos:       		<label>{{ profesional.hijos }}</label></p>
+					<p>IBAN:  	        	<label>{{ profesional.iban }}</label></p>
+
+				</div>
+			  </div>
+        </div>
+
+		<div class="col-sm-4 col-md-4 col-lg-4 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+
+                    <h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-earth  icon-md text-primary mr-0 mr-sm-4">
+					</i>Dirección</h3>
+					<hr>
+					<p>Calle:		    <label>{{ profesional.dir_calle | default_if_none:""}}</label></p>
+					<p>Número:		    <label>{{ profesional.dir_numero | default_if_none:""}}</label></p>
+					<p>Piso/Puerta:		<label>{{ profesional.dir_piso | default_if_none:""}}</label></p>
+					<p>C.P.:   			<label>{{ profesional.codigo_postal | default_if_none:""}}</label></p>
+					<p>Provincia:		<label>{{ profesional.provincias | default_if_none:""}}</label></p>
+					<p>Población:		<label>{{ profesional.poblacion | default_if_none:""}}</label></p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </div>
+			  </div>
+            </div>
+		</div>
+
+		<div class="modal-footer">
+			<a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'profesionales:listado_profesionales' %}">volver</a>
+		</div>
+
+
+{% endblock cuerpo %}

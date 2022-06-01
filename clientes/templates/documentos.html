@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block cuerpo %}
+{% with menudocumento="1" pk=pk %}
+	{% include "menucliente.html" %}
+{% endwith %}
+<br>
+
+<div class="row">
+	<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card ">
+		<div class="card">
+			<div class="card-body">
+
+				<a onclick="return abrir_modal('{% url 'clientes:documentos_nuevo' client=pk %}')">
+	  				<span class="btn btn-info btn-sm">Agregar Factura</span>
+				</a>
+
+				<h3 class="card-title"></h3>
+
+
+				{% if docs %}
+					<div class="row">
+						<div class="col"><p>Tipo</p></div>
+						<div class="col"><p>Fecha</p></div>
+						<div class="col"><p></p></div>
+
+					</div>
+					<hr>
+
+
+					{% for 	doc in docs %}
+					<div class="row">
+						<div class="col-sm-3 col-md-3 col-lg-3"><p>{{ doc.tipodocumento }}</p></div>
+						<div class="col-sm-3 col-md-3 col-lg-3 "><p>{{ doc.fecha_documento }}</p></div>
+						<div class="col-sm-3 col-md-3 col-lg-5"><p>
+							<a class="btn btn-outline-primary btn-sm"
+										   data-toggle="collapse"
+										   href="#doc{{ doc.id }}"
+										   role="button"
+										   aria-expanded="false"
+										   aria-controls="doc{{ doc.id }}">ver
+							</a>
+							<a onclick="return abrir_modal('{% url 'clientes:documento_modificar' doc.pk%}')">
+								<span class="btn btn-outline-info btn-sm">edit</span>
+							</a>
+							<a onclick="return abrir_modal('{% url 'clientes:documento_eliminar' doc.pk%}')">
+								<span class="btn btn-outline-danger btn-sm mdi mdi-delete"></span>
+							</a>
+						</p>
+						</div>
+						</div>
+			        {% endfor %}
+
+				{% else %}
+					No tiene Documentos
+				{% endif %}
+
+				<hr>
+
+			</div>
+		</div>
+	</div>
+
+
+
+<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card " id="myGroup">
+
+				  {% for doc in docs %}
+							  <div class="collapse" id="doc{{ doc.id }}" data-parent="#myGroup">
+									 {{ doc.etiqueta  }} <hr>
+								  <div class="card card-body">
+
+										{% if not doc.documento %}
+											<img class="container" src="{%  static 'assets/images/not_found.png' %}" ></a>
+										{% else %}
+									  		<img class="container" src="{{ doc.documento.url }}" ></a>
+									  {% endif %}
+								  </div>
+							  </div>
+				  {% endfor %}
+
+</div>
+
+
+</div> <!--  end row -->
+
+
+<div id="popup" class="modal fade" role="dialog">  </div>
+
+
+{% endblock cuerpo %}
+
+{% block js %}
+
+
+<script>
+function abrir_modal(url)
+{
+	$('#popup').load(url, function()
+	{
+		$(this).modal('show');
+	});
+	return false;
+}
+
+function cerrar_modal()
+{
+	$('#popup').modal('hide');
+	return false;
+}
+
+
+
+
+</script>
+
+<!--  custom js for this page-->
+<script src="{% static 'assets/js/shared/modal-demo.js' %}"></script>
+
+{% endblock js %}

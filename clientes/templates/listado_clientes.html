@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block cuerpo %}
+
+      <!-- partial -->
+
+<style>
+.dataTables_wrapper .dataTable .btn{
+     padding: 0.4rem 0.9rem!important;
+    vertical-align: top;
+}
+</style>
+
+
+<div class="row">
+  <div class="col-md-12">
+            <div class="card" >
+              <div class="card-body">
+                  <h3 class="card-title">Listado de Clientes</h3>
+                  <p class="card-description">  </p>
+                <div class="row">
+                  <div class="col-12 table-responsive">
+                    <table id="tabla" class="table">
+                      <thead>
+                        <tr>
+                             <th>Nombre Completo</th>
+                             <th>DNI </th>
+                             <th>Fecha Nacimiento</th>
+                             <th>Teléfono</th>
+                             <th> <a role="button" class="btn btn-outline-warning btn-sm" href="{% url 'clientes:nuevo_cliente' %}">Nuevo Cliente</a></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+
+                        {% for 	client in clientes %}
+
+                            <tr>
+
+                                <td>{{ client.nombre | default_if_none:"" | truncatechars:25 }}&nbsp;{{ client.apellidos | default_if_none:"" | truncatechars:25 }}</td>
+                                <td>{{ client.num_documento | default_if_none:"" | truncatechars:25 }}</td>
+                                <td>{{ client.fecha_nacimiento | default_if_none:"" }}</td>
+                                <td>{{ client.movil | default_if_none:"" }} </td>
+                                <td>
+                                    <a role="button" class="btn btn-outline-primary btn-sm" href="{% url 'clientes:detalle_cliente' client.pk %}">ver</a>
+
+                                    <a role="button" class="btn btn-outline-success btn-sm" href="{% url 'clientes:modificar_cliente' client.pk %}">editar</a>
+
+
+                                    <a onclick="return abrir_modal('{% url 'clientes:cliente_eliminar' client.pk %}')">
+                                        <span class="btn btn-outline-danger mdi mdi-delete"></span></a>
+                                </td>
+                            </tr>
+			            {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+  </div>
+</div>
+<div id="popup" class="modal fade" role="dialog">
+
+
+</div>
+{% endblock cuerpo %}
+
+{% block js %}
+
+<script>
+function abrir_modal(url)
+{
+	$('#popup').load(url, function()
+	{
+		$(this).modal('show');
+	});
+	return false;
+}
+
+function cerrar_modal()
+{
+	$('#popup').modal('hide');
+	return false;
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+        	url: "/static/assets/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+    <!-- Custom js for this page
+    <script src="{% static '/assets/js/shared/data-table.js' %}"></script>-->
+          <script src="{% static 'assets/js/shared/modal-demo.js' %}"></script>
+   <!--<script src="{% static 'assets/js/shared/jquery.dataTables.min.js' %}"></script>-->
+   <!-- End custom js for this page-->
+
+{% endblock js %}

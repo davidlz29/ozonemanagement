@@ -1,0 +1,13 @@
+<nav class="navbar  bg-light text-center nav-bottom ">
+
+	<div class="container d-flex justify-content-center">
+	<ul class="nav nav-tabs tab-solid tab-solid" role="tablist">
+
+		<li class="nav-item"><a class="btn btn-outline-primary {% if menudetalle %}btn-outline-primary active{% endif %}" href="{% url 'clientes:detalle_cliente' pk %}">Detalles</a></li>
+		<li class="nav-item"><a class="btn btn-outline-primary {% if menudocumento %}btn-outline-primary active{% endif %}" href="{% url 'clientes:documentos_cliente' pk %}">Facturas </a></li>
+		<li class="nav-item"><a class="btn btn-outline-primary {% if menufotos %}btn-outline-primary active{% endif %}" href="{% url 'clientes:fotos_cliente' pk %}">Fotos </a></li>
+
+    </ul>
+
+    </div>
+</nav>

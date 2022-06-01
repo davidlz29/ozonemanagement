@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block cuerpo %}
+<div class="container">
+           <div class="card">
+              <div class="card-body">
+                    <h3 class="card-title">Añadir Artículos al Pedido </h3>
+
+				    <form role="form" action="{% url 'pedidos:addarticulo_pedido' pk %}" method="post" enctype="multipart/form-data">
+                        	{% csrf_token %}
+						<div class="form-inline mt-1 mb-3">
+							<label id="articulos"> Artículo:&nbsp; {{ form.articulos }}&nbsp; Cantidad:&nbsp;&nbsp; {{form.cantidad}}</label>
+							<label class="ml-3">
+								<input type="submit" class="btn btn-outline-success" name="agregar" value="Agregar Artículo">
+							</label>
+						</div>
+								{% if articulos %}
+									<br><p>Cantidad de Artículos:</p>
+									{% for art in articulos %}
+										{{ art.cantidad }}
+									{% endfor %}
+								{% endif %}
+
+						<div class="col-lg-12 text-right mt-5">
+
+							<a role="button" class="btn btn-primary btn-sm" href="{% url 'pedidos:listado_pedidos' %}">Guardar</a>
+							<a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'pedidos:listado_pedidos' %}">Volver</a>
+						</div>
+					</form>
+              </div>
+           </div>
+</div>
+
+{% endblock cuerpo %}
+
+
